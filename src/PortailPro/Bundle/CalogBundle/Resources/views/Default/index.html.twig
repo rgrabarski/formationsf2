@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>un  titre</title>
+
+        {# On charge le CSS de bootstrap depuis le site directement #}
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    </head>
+
+    <body>
+        {% block body %}
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Hello {{ name }}!</h1>
+                <p>...</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+            </div>
+            <div class="alert alert-info" role="alert">Jackisme <span class="glyphicon glyphicon-heart" aria-hidden="true"></span></div>
+            <hr>
+
+            <footer>
+                <p>PatouTeam © {{ 'now'|date('Y') }}</p>
+            </footer>
+        </div>
+        {% endblock %}
+        {% block javascripts %}
+        {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        {% endblock %}
+
+    </body>
+</html>

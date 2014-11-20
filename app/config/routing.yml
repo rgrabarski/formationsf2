@@ -1,0 +1,5 @@
+portail_pro_calog:
+    resource: "@PortailProCalogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
