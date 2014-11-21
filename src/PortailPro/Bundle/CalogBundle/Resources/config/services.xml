@@ -13,4 +13,10 @@
         </service>
     </services>
     -->
+
+    <services>
+        <service id="twig.catalog_extension" class="PortailPro\Bundle\CalogBundle\Twig\CatalogExtension">
+            <tag name="twig.extension" ></tag>
+        </service>
+    </services>
 </container>

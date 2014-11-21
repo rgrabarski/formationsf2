@@ -106,4 +106,12 @@ class Category
     {
         return $this->products;
     }
+
+    /**
+     * __toString method
+     */
+    public function __toString()
+    {
+        return $this->getId() . ' : ' . $this->getNom();
+    }
 }

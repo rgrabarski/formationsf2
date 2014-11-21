@@ -13,7 +13,7 @@ use PortailPro\Bundle\CalogBundle\Form\ProductType;
 /**
  * Product controller.
  *
- * @Route("/product")
+ * @Route("/admin/product")
  */
 class ProductController extends Controller
 {

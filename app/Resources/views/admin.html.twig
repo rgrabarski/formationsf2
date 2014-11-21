@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %} in ADMIN section</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+    <nav style="float: right">
+        Hello : {{ app.user.username }}
+        <a href="{{path('logout')}}">Logout</a>
+    </nav>
+    <nav>
+        <a href="{{path('article')}}">Articles</a>
+        <a href="{{path('product')}}">Products</a>
+        <a href="{{path('category')}}">Categories</a>
+    </nav>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

@@ -3,12 +3,15 @@
 namespace PortailPro\Bundle\CalogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Document
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="PortailPro\Bundle\CalogBundle\Entity\DocumentRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Document
 {
@@ -36,11 +39,26 @@ class Document
     private $filename;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="article_id", type="integer")
+     * @var UploadedFile
      */
-    private $articleId;
+    private $file;
+
+    /**
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file)
+    {
+        $this->file = $file;
+        $this->path = uniqid();
+    }
 
 
     /**
@@ -120,5 +138,62 @@ class Document
     public function getArticleId()
     {
         return $this->articleId;
+    }
+
+    /**
+     * __toString method
+     */
+    public function __toString()
+    {
+        return $this->getId() . ' : ' . $this->getFilename();
+    }
+
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function preUpload()
+    {
+        if ($this->file !== null) {
+            $this->path = uniqid('product_').'.'.$this->file->guessExtension();
+            $this->filename =  $this->file->getClientOriginalName();
+        }
+    }
+
+    private function getUploadDir()
+    {
+        return realpath(__DIR__.'/../../../../../web/upload/');
+    }
+
+    /**
+     * @ORM\PostPersist
+     * @ORM\PostUpdate
+     */
+    public function upload()
+    {
+        if ($this->file !== null) {
+            $this->file->move($this->getUploadDir(), $this->path);
+            unset($this->file);
+        }
+
+    }
+
+    /**
+     * @return string
+     */
+    public function getAbsolutePath()
+    {
+        return $this->getUploadDir().'/'.$this->getPath();
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function remove()
+    {
+        if (file_exists($this->getAbsolutePath())) {
+            unlink($this->getAbsolutePath());
+        }
     }
 }

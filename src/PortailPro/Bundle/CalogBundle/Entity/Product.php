@@ -49,6 +49,15 @@ class Product
      */
     private $articles;
 
+
+    /**
+     * @var Document
+     *
+     * @ORM\OneToOne(targetEntity="Document", cascade={"persist"})
+     * @ORM\JoinColumn(name="document_id", referencedColumnName="id")
+     */
+    private $document;
+
     /**
      * Get id
      *
@@ -174,5 +183,28 @@ class Product
     public function __toString()
     {
         return $this->getId() . ' : ' . $this->getName();
+    }
+
+    /**
+     * Set document
+     *
+     * @param integer $document
+     * @return Article
+     */
+    public function setDocument($document)
+    {
+        $this->document = $document;
+
+        return $this;
+    }
+
+    /**
+     * Get document
+     *
+     * @return integer
+     */
+    public function getDocument()
+    {
+        return $this->document;
     }
 }

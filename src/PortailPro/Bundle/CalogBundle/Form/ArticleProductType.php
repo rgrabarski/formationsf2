@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ProductType extends AbstractType
+class ArticleProductType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,20 +15,19 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('category')
-            ->add('document', new DocumentType())
+            ->add('size', 'choice')
+            ->add('color', 'choice')
+            ->add('price', 'text')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'PortailPro\Bundle\CalogBundle\Entity\Product'
+            'data_class' => 'PortailPro\Bundle\CalogBundle\Entity\Article'
         ));
     }
 
@@ -37,6 +36,6 @@ class ProductType extends AbstractType
      */
     public function getName()
     {
-        return 'portailpro_bundle_calogbundle_product';
+        return 'portailpro_bundle_calogbundle_articleproduct';
     }
 }

@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+    {% macro selector(entity, attribut) %}
+        <select>
+            {% for article in entity.articles %}
+                <option>{{ attribute(article, attribut) }}</option>
+            {% endfor %}
+        </select>
+    {% endmacro %}
+
+    <h1>{{ entity.name }}</h1>
+
+    <table class="record_properties">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ entity.name }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ entity.description }}</td>
+        </tr>
+        <tr>
+            <th>Articles Name</th>
+            {#{{ _self.selector(entity, 'color') }}#}
+            {#{{ _self.selector(entity, 'size') }}#}
+            {#{{ selector(entity, 'color') }}#}
+            {#{{ selector(entity, 'size') }}#}
+
+        </tr>
+        </tbody>
+
+    </table>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('homepage') }}">
+                Back to the catalog
+            </a>
+        </li>
+
+    </ul>
+{% endblock %}

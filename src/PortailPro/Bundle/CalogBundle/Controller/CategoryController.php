@@ -13,7 +13,7 @@ use PortailPro\Bundle\CalogBundle\Form\CategoryType;
 /**
  * Category controller.
  *
- * @Route("/category")
+ * @Route("/admin/category")
  */
 class CategoryController extends Controller
 {

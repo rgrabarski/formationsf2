@@ -1,5 +1,13 @@
-portail_pro_calog:
-    resource: "@PortailProCalogBundle/Controller/"
-    type:     annotation
-    prefix:   /
+security:
+    path: /login
+    defaults:  { _controller: PortailProCalogBundle:Security:login }
 
+portail_pro_calog:
+    resource: "@PortailProCalogBundle/Controller"
+    type:     annotation
+
+login_check:
+    pattern: /login_check
+
+logout:
+    pattern: /logout

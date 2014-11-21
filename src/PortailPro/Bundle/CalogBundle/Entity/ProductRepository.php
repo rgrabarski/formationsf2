@@ -12,4 +12,8 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
+    public function findAllWithRandom()
+    {
+        return $this->createQueryBuilder('p')->addSelect('RAND() as HIDDEN rand ')->orderBy('rand')->getQuery()->execute();
+    }
 }

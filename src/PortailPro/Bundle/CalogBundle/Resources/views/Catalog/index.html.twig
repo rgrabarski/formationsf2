@@ -1,0 +1,27 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Catalog list</h1>
+    <div class="container">
+        <div class="bs-docs-section">
+            <div class="bs-example">
+                <div class="row">
+                    {% for entity in entities %}
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img src="{{ asset('upload/'~entity.document.path) }}" data-holder-rendered="true" style="max-height: 100px; display: block;">
+                                <div class="caption">
+                                    <h3>{{ entity.name }}</h3>
+                                    <p>{{ entity.description }}</p>
+                                    <p>
+                                        <a href="{{ path('catalog_product_show', { 'id': entity.id }) }}" class="btn btn-default" role="button">Show Product</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
